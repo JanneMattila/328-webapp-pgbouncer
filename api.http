@@ -1,11 +1,4 @@
-@endpoint = http://localhost:32771
+@endpoint = http://localhost:5000
 
-### Get files
-POST {{endpoint}}/api/files HTTP/1.1
-Content-Type: application/json
-
-{
-    "path": "/home",
-    "recursive": true,
-    "filter": "*"
-}
+### Execute query
+GET {{endpoint}}/api/query HTTP/1.1

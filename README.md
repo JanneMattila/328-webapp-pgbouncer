@@ -10,3 +10,10 @@
 
 Web app demonstrating use of Pgbouncer sidecar
 for optimizing connections to [Azure Databases for PostgreSQL](https://github.com/JanneMattila/some-questions-and-some-answers/blob/master/q%26a/azure_database_for_postgresql.md#azure-databases-for-postgresql).
+
+## Trying this locally
+
+```bash
+docker run --name my-postgres -p 5432:5432 -e POSTGRES_PASSWORD=password -d postgres
+docker exec -it my-postgres bash
+```
