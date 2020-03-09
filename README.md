@@ -15,5 +15,12 @@ for optimizing connections to [Azure Databases for PostgreSQL](https://github.co
 
 ```bash
 docker run --name my-postgres -p 5432:5432 -e POSTGRES_PASSWORD=password -d postgres
-docker exec -it my-postgres bash
+
+docker run -d --name=pgbouncer -p 5439:5439 --env-file env.conf  pgbouncer/pgbouncer
+```
+
+Using `docker-compose`:
+
+```bash
+docker-compose up
 ```
