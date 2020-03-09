@@ -1,7 +1,12 @@
-@endpoint = http://localhost:5000
+@endpoint_local = http://localhost:5000
+@endpoint_azure = https://yourwebappnamehere.azurewebsites.net/
 
-### Execute query using direct connection to postgres
-POST {{endpoint}}/api/query HTTP/1.1
+#####################################################
+### Local
+#####################################################
+
+### Execute query using direct connection to local postgres
+POST {{endpoint_local}}/api/query HTTP/1.1
 Content-Type: application/json
 
 {
@@ -10,12 +15,46 @@ Content-Type: application/json
     "count": 10
 }
 
-### Execute query using pgbouncer
-POST {{endpoint}}/api/query HTTP/1.1
+### Execute query using direct connection to Azure Database for PostgreSQL
+POST {{endpoint_local}}/api/query HTTP/1.1
 Content-Type: application/json
 
 {
-    "connectionString": "Host=localhost;Port=5439;Username=postgres;Password=password",
+    "connectionString": "Database=postgres;Host=yourinstancename.postgres.database.azure.com;Port=5432;Username=postgres@yourinstancename.postgres.database.azure.com;Ssl Mode=Require;Password=password",
+    "query": "SELECT 1",
+    "count": 10
+}
+
+### Execute query using pgbouncer (running locally in Docker)
+POST {{endpoint_local}}/api/query HTTP/1.1
+Content-Type: application/json
+
+{
+    "connectionString": "Database=postgres;Host=localhost;Port=5439;Username=pgbouncer",
+    "query": "SELECT 1",
+    "count": 10
+}
+
+#####################################################
+### Azure
+#####################################################
+
+### Execute query using direct connection to Azure Database for PostgreSQL
+POST {{endpoint_azure}}/api/query HTTP/1.1
+Content-Type: application/json
+
+{
+    "connectionString": "Database=postgres;Host=yourinstancename.postgres.database.azure.com;Port=5432;Username=postgres@yourinstancename.postgres.database.azure.com;Ssl Mode=Require;Password=password",
+    "query": "SELECT 1",
+    "count": 10
+}
+
+### Execute query using pgbouncer (using pgbouncer running in App Service)
+POST {{endpoint_azure}}/api/query HTTP/1.1
+Content-Type: application/json
+
+{
+    "connectionString": "Database=postgres;Host=pgbouncer;Port=5439;Username=pgbouncer",
     "query": "SELECT 1",
     "count": 10
 }
