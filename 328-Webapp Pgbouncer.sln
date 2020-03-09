@@ -9,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{7E9AF29F-12C
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 		api.http = api.http
+		app-service-docker-compose.yml = app-service-docker-compose.yml
 		azure-pipelines.yml = azure-pipelines.yml
 		docker-compose.yml = docker-compose.yml
 		pgbouncer.env = pgbouncer.env

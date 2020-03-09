@@ -1,4 +1,21 @@
 @endpoint = http://localhost:5000
 
-### Execute query
-GET {{endpoint}}/api/query HTTP/1.1
+### Execute query using direct connection to postgres
+POST {{endpoint}}/api/query HTTP/1.1
+Content-Type: application/json
+
+{
+    "connectionString": "Host=localhost;Port=5432;Username=postgres;Password=password",
+    "query": "SELECT 1",
+    "count": 10
+}
+
+### Execute query using pgbouncer
+POST {{endpoint}}/api/query HTTP/1.1
+Content-Type: application/json
+
+{
+    "connectionString": "Host=localhost;Port=5439;Username=postgres;Password=password",
+    "query": "SELECT 1",
+    "count": 10
+}
